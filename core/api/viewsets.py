@@ -4,11 +4,15 @@ from rest_framework.filters import SearchFilter
 from core.models import PontoTuristico
 from .serializers import PontoTuristicoSerializer
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.authentication import TokenAuthentication
 
 
 class PontoTuristicoViewSet(ModelViewSet):
     serializer_class = PontoTuristicoSerializer
     filter_backends = [SearchFilter]
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    authentication_classes = (TokenAuthentication,)
     search_fields = ['nome', 'descricao', 'endereco__linha1']
     #O lookup_field precisa ser unico 
     #lookup_field = 'nome'
