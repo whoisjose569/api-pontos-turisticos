@@ -19,6 +19,10 @@ class PontoTuristico(models.Model):
         verbose_name = "Ponto Turistico"
         verbose_name_plural = "Pontos Turisticos"
     
+    @property
+    def descricao_completa2(self):
+        return '%s - %s' % (self.nome, self.endereco)
+    
     def __str__(self):
         return self.nome
     
