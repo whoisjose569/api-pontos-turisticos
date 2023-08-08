@@ -4,7 +4,7 @@ from rest_framework.filters import SearchFilter
 from core.models import PontoTuristico
 from .serializers import PontoTuristicoSerializer
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions
 from rest_framework.authentication import TokenAuthentication
 
 
