@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.viewsets import  ModelViewSet
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter
@@ -34,6 +35,18 @@ class PontoTuristicoViewSet(ModelViewSet):
             
         #return PontoTuristico.objects.filter(aprovado=True)
         return queryset
+    
+    @action(methods=['post'], detail=True)
+    def associa_atracoes(self, request, id):
+        atracoes = request.data['ids']
+        
+        ponto = PontoTuristico.objects.get(id=id)
+        
+        ponto.atracoes.set(atracoes)
+        
+        ponto.save()
+        
+        return HttpResponse('ok')
     
     # def list(self, request, *args, **kwargs):
     #     return super(PontoTuristicoViewSet, self).list(request, *args, **kwargs)
